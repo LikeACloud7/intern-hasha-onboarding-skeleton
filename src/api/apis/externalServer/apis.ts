@@ -3,8 +3,8 @@ import type {
   InternalCallParams,
   ResponseNecessary,
   SuccessResponse,
-} from "../../entities";
-import type { UploadFileRequest } from "./schemas";
+} from '../../entities';
+import type { UploadFileRequest } from './schemas';
 
 type GetApisProps = {
   callWithoutToken: <R extends ResponseNecessary>(
@@ -23,7 +23,7 @@ type Api = (_: {
 
 export const getExternalServerApis = ({ callWithoutToken }: GetApisProps) =>
   ({
-    "PUT upload-file": ({
+    'PUT upload-file': ({
       path,
       body,
       contentType,
@@ -33,7 +33,7 @@ export const getExternalServerApis = ({ callWithoutToken }: GetApisProps) =>
       contentType: string;
     }) =>
       callWithoutToken<SuccessResponse<void>>({
-        method: "PUT",
+        method: 'PUT',
         contentType,
         path,
         body,

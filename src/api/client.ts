@@ -1,10 +1,10 @@
-import { getExternalServerApis, getLocalServerApis } from "./apis";
+import { getExternalServerApis, getLocalServerApis } from './apis';
 import type {
   ErrorResponse,
   ExternalCallParams,
   InternalCallParams,
   ResponseNecessary,
-} from "./entities";
+} from './entities';
 
 type ImplApiProps = {
   externalCall(_: ExternalCallParams): Promise<ResponseNecessary>;
@@ -24,13 +24,13 @@ export const implApi = ({ externalCall }: ImplApiProps) => {
       body: content.body,
       headers: {
         ...(content.contentType !== undefined
-          ? { "content-type": content.contentType }
-          : { "content-type": "application/json;charset=UTF-8" }),
+          ? { 'content-type': content.contentType }
+          : { 'content-type': 'application/json;charset=UTF-8' }),
         ...(content.token !== undefined
           ? { Authorization: `Bearer ${content.token}` }
           : {}),
       },
-      credentials: "include",
+      credentials: 'include',
     });
 
     return response as R;

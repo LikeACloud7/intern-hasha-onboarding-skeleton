@@ -1,1 +1,1 @@
-export { getExternalServerApis } from "./apis";
+export { getExternalServerApis } from './apis';

@@ -1,14 +1,17 @@
-import react from "@woohm402/eslint-config-react";
+import react from '@woohm402/eslint-config-react';
 
 export default [
-  {
-    ignores: [".yarn", "*.js", "public/mockServiceWorker.js", "dist"],
-  },
   ...react({
     tsconfigRootDir: import.meta.dirname,
-    envAllowedFiles: ["src/App.tsx"],
+    envAllowedFiles: ['src/App.tsx'],
   }),
   {
-    ignores: ['src/components/ui/calendar.tsx'],
+    ignores: [
+      '.yarn',
+      '*.js',
+      'public/mockServiceWorker.js',
+      'dist',
+      'src/components/ui/calendar.tsx',
+    ],
   },
 ];
