@@ -12,7 +12,7 @@
     "format:fix": "prettier --write .",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
-    "check": "yarn types:check && yarn format:check && yarn lint:check"
+    "check-all": "yarn types:check && yarn format:check && yarn lint:check"
   },
   "dependencies": {
     "@tanstack/react-query": "5.62.11",
