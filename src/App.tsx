@@ -1,5 +1,11 @@
 import './index.css';
 
+import LandingPage from './pages/LandingPage';
+
 export const App = () => {
-  return <div>Hello World!</div>;
+  return (
+    <div>
+      <LandingPage></LandingPage>
+    </div>
+  );
 };
