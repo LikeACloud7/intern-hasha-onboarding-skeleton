@@ -6,7 +6,7 @@ import type {
   ResponseNecessary,
   SuccessResponse,
 } from '../../entities';
-import type {} from './schemas';
+import type { postsResponse } from './schemas';
 
 type GetApisProps = {
   callWithToken: <R extends ResponseNecessary>(
@@ -27,28 +27,11 @@ type Api = (_: {
   query: never;
 }) => Promise<{ status: number; data: unknown }>;
 
-export const getLocalServerApis = ({
-  callWithToken,
-  callWithoutToken,
-  callWithOptionalToken,
-}: GetApisProps) =>
-  // GUIDE: 예시 api들입니다.
+export const getLocalServerApis = ({ callWithoutToken }: GetApisProps) =>
   ({
-    'GET /echo/:message': () =>
-      callWithoutToken<SuccessResponse<never>>({
+    'GET /post': ({ params }: { params: string }) =>
+      callWithoutToken<SuccessResponse<postsResponse>>({
         method: 'GET',
-        path: `echo`,
-      }),
-    'GET /echo/:message2': () =>
-      callWithToken<SuccessResponse<never>>({
-        method: 'GET',
-        path: `echo`,
-        token: '',
-      }),
-    'GET /echo/:message3': () =>
-      callWithOptionalToken<SuccessResponse<never>>({
-        method: 'GET',
-        path: `echo`,
-        token: '',
+        path: `post?${params}`,
       }),
   }) satisfies Record<string, Api>;
