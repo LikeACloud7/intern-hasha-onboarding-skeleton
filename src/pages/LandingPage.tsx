@@ -1,18 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { useContext } from 'react';
 
 import { CustomAccordion } from '@/components/ui/accordion';
-import FilterBar from '@/components/ui/FilterBar';
+import { FilterBar } from '@/components/ui/FilterBar';
 import Header from '@/components/ui/Header';
 import { ICON_SRC } from '@/entities/asset';
-import Card from '@/feature/post/ui/Card';
+import { Card } from '@/feature/post/ui/Card';
+import { useGuardContext } from '@/shared/context/hooks';
 import { serviceContext } from '@/shared/context/serviceContext';
 
-const LandingPage = () => {
-  const posts = useGetPosts();
+export const LandingPage = () => {
+  const postsData = useGetPosts();
 
   return (
-    // <div className='w-[1920px] h-[1024px] min-w-[1348px] max-w-[1920px] bg-grey-light gap-[10px] top-[425px] left-[185px]'>
     <div className="min-h-screen bg-grey-light">
       <div className="w-full h-auto gap-[42px] flex flex-col bg-grey-light items-center">
         <Header />
@@ -45,7 +44,9 @@ const LandingPage = () => {
               </div>
             </div>
             <div className="w-full h-auto gap-[20px] grid-cols-3 grid">
-              {posts?.map((post, index) => <Card key={index} post={post} />)}
+              {postsData?.posts.map((post, index) => (
+                <Card key={index} post={post} />
+              ))}
             </div>
           </div>
         </div>
@@ -54,22 +55,19 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
-
 const useGetPosts = () => {
-  const context = useContext(serviceContext);
-  const postService = context?.postService;
+  const { postService } = useGuardContext(serviceContext);
 
-  const { data: posts } = useQuery({
+  const { data: postsData } = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
-      if (postService == null) {
-        throw new Error('Post service not found');
-      }
       const response = await postService.getPosts();
-      return response.posts;
+      if (response.type === 'success') {
+        return response.data;
+      }
+      throw new Error('회사 정보를 가져오는데 실패했습니다.');
     },
   });
 
-  return posts;
+  return postsData;
 };

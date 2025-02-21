@@ -21,4 +21,5 @@ export const ICON_SRC = {
   REFRESH: '/svg/refresh.svg',
   CALL: '/svg/call.svg',
   SEARCH: '/svg/search.svg',
+  VECTOR: '/svg/Vector.svg',
 };

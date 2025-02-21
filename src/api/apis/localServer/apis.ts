@@ -6,7 +6,7 @@ import type {
   ResponseNecessary,
   SuccessResponse,
 } from '../../entities';
-import type { postsResponse } from './schemas';
+import type { PostsResponse } from './schemas';
 
 type GetApisProps = {
   callWithToken: <R extends ResponseNecessary>(
@@ -30,7 +30,7 @@ type Api = (_: {
 export const getLocalServerApis = ({ callWithoutToken }: GetApisProps) =>
   ({
     'GET /post': ({ params }: { params: string }) =>
-      callWithoutToken<SuccessResponse<postsResponse>>({
+      callWithoutToken<SuccessResponse<PostsResponse>>({
         method: 'GET',
         path: `post?${params}`,
       }),

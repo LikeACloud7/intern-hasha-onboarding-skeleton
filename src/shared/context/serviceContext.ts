@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
-import type { postService } from '@/feature/post/service/postService';
+import type { PostService } from '@/feature/post/service/postService';
 
-type serviceContextType = {
-  postService: postService;
+type ServiceContextType = {
+  postService: PostService;
 };
 
-export const serviceContext = createContext<serviceContextType | null>(null);
+export const serviceContext = createContext<ServiceContextType | null>(null);

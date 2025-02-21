@@ -1,6 +1,11 @@
-import type { post } from '@/api/apis/localServer/schemas';
+import type { Post } from '@/api/apis/localServer/schemas';
+import { ICON_SRC } from '@/entities/asset';
+import { EnvContext } from '@/shared/context/EnvContext';
+import { useGuardContext } from '@/shared/context/hooks';
 
-const Card = ({ post }: { post: post }) => {
+export const Card = ({ post }: { post: Post }) => {
+  const { API_BASE_URL } = useGuardContext(EnvContext);
+
   return (
     <div className="w-full h-auto min-w-[340px] max-w-[380px] gap-[12px] rounded-[16px] bg-[#ffffff] overflow-hidden">
       <div className="w-full h-auto gap-[6px] flex flex-col hover:text-grey-dark">
@@ -8,7 +13,7 @@ const Card = ({ post }: { post: post }) => {
           <div className="w-full h-[50px] px-[22px] gap-[20px] bg-[#E8EBEF] flex">
             <div className="w-full h-auto gap-[6px] flex items-center">
               <img
-                src="public/svg/person.svg"
+                src={ICON_SRC.PERSON}
                 alt="person"
                 className="w-[24px] h-[24px]"
               />
@@ -22,7 +27,7 @@ const Card = ({ post }: { post: post }) => {
           </div>
           <div className="w-full h-auto px-[22px] gap-[10px] flex justify-end">
             <img
-              src="public/svg/Vector.svg"
+              src={ICON_SRC.VECTOR}
               alt="vector"
               className="w-[28px] h-[12px]"
             />
@@ -32,7 +37,7 @@ const Card = ({ post }: { post: post }) => {
           <div className="w-full h-auto justify-between">
             <div className="w-full h-auto gap-[12px] flex items-center">
               <img
-                src=""
+                src={`${API_BASE_URL}/${post.imageLink}`}
                 alt="logo"
                 className="w-[40px] h-[40px] rounded-[6px] bg-[#E1E4E9]"
               />
@@ -49,7 +54,7 @@ const Card = ({ post }: { post: post }) => {
       <div className="w-full h-auto justify-between p-[22px] items-center flex">
         <div className="w-auto h-auto gap-[6px] flex">dfd</div>
         <img
-          src="public/svg/bookmark_unselected.svg"
+          src={ICON_SRC.BOOKMARK.UNSELECTED}
           alt="unselected"
           className="w-[30px] h-[30px]"
         />
@@ -57,5 +62,3 @@ const Card = ({ post }: { post: post }) => {
     </div>
   );
 };
-
-export default Card;

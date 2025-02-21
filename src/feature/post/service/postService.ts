@@ -1,11 +1,12 @@
 import type { Apis } from '@/api';
-import type { postsResponse } from '@/api/apis/localServer/schemas';
+import type { PostsResponse } from '@/api/apis/localServer/schemas';
+import type { ServiceResponse } from '@/api/entities';
 
-export type postService = {
-  getPosts: () => Promise<postsResponse>;
+export type PostService = {
+  getPosts: () => ServiceResponse<PostsResponse>;
 };
 
-export const implPostService = (apis: Apis): postService => ({
+export const implPostService = (apis: Apis): PostService => ({
   getPosts: async () => {
     const path = new URLSearchParams();
     path.append('page', '0');
@@ -13,9 +14,12 @@ export const implPostService = (apis: Apis): postService => ({
       params: path.toString(),
     });
     if (status === 200) {
-      return data;
+      return {
+        type: 'success',
+        data,
+      };
     } else {
-      throw new Error('Failed to get posts');
+      return { type: 'error', code: data.code, message: data.message };
     }
   },
 });

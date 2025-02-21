@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { type ExternalCallParams, implApi } from './api';
 import { implPostService } from './feature/post/service/postService';
-import LandingPage from './pages/LandingPage';
+import { LandingPage } from './pages/LandingPage';
 import { serviceContext } from './shared/context/serviceContext';
 
 const queryClient = new QueryClient();

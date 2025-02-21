@@ -1,5 +1,5 @@
 // GUIDE: 스웨거 문서를 토대로 schema를 작성합니다.
-export type post = {
+export type Post = {
   id: string;
   author: {
     id: string;
@@ -23,8 +23,8 @@ export type post = {
   isBookmarked: boolean;
 };
 
-export type postsResponse = {
-  posts: post[];
+export type PostsResponse = {
+  posts: Post[];
   paginator: {
     lastPage: number;
   };
